@@ -1,0 +1,26 @@
+<svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+<foreignObject x="-34.1062" y="-34.1062" width="119.212" height="119.212"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(17.05px);clip-path:url(#bgblur_0_99_10709_clip_path);height:100%;width:100%"></div></foreignObject><g data-figma-bg-blur-radius="34.1062">
+<rect x="0.159445" y="0.159445" width="50.6811" height="50.6811" rx="25.3406" fill="url(#paint0_radial_99_10709)" fill-opacity="0.17"/>
+<rect x="0.159445" y="0.159445" width="50.6811" height="50.6811" rx="25.3406" stroke="url(#paint1_radial_99_10709)" stroke-width="0.318889"/>
+<rect x="0.159445" y="0.159445" width="50.6811" height="50.6811" rx="25.3406" stroke="url(#paint2_radial_99_10709)" stroke-width="0.318889"/>
+<path d="M14.0249 19.125H36.9749" stroke="white" stroke-width="1.9125" stroke-linecap="round"/>
+<path opacity="0.34" d="M14.0249 25.5H36.9749" stroke="white" stroke-width="1.9125" stroke-linecap="round"/>
+<path d="M14.0249 31.875H36.9749" stroke="white" stroke-width="1.9125" stroke-linecap="round"/>
+</g>
+<defs>
+<clipPath id="bgblur_0_99_10709_clip_path" transform="translate(34.1062 34.1062)"><rect x="0.159445" y="0.159445" width="50.6811" height="50.6811" rx="25.3406"/>
+</clipPath><radialGradient id="paint0_radial_99_10709" cx="0" cy="0" r="1" gradientTransform="matrix(27 51.5 -42.1198 55.3423 14 8)" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="0.770833" stop-color="white" stop-opacity="0.223958"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="paint1_radial_99_10709" cx="0" cy="0" r="1" gradientTransform="matrix(21.89 25.4309 -30.8467 65.5056 -7.01499 -6.30587)" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="paint2_radial_99_10709" cx="0" cy="0" r="1" gradientTransform="matrix(-17.5035 -19.1665 19.5291 -48.8403 55.2223 57.4165)" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>

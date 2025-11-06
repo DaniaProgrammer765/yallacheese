@@ -1,0 +1,40 @@
+/* 🎨 تنسيق شريط التكبير/التصغير */
+.custom-range {
+  width: 100%;
+  appearance: none;
+  height: 4px;
+  background: #B5A7AC;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* 🔘 شكل الدائرة (Thumb) في Webkit (Chrome / Safari) */
+.custom-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #FF2B77;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.custom-range::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* 🦊 شكل الدائرة في Firefox */
+.custom-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #FF2B77;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.custom-range::-moz-range-thumb:hover {
+  transform: scale(1.1);
+}

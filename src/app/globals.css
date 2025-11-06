@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+@font-face {
+  font-family: "ExpoArabic";
+  src: url("/fonts/ExpoArabic/ExpoArabic-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "ExpoArabic";
+  src: url("/fonts/ExpoArabic/ExpoArabic-Book.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "ExpoArabic";
+  src: url("/fonts/ExpoArabic/ExpoArabic-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "ExpoArabic";
+  src: url("/fonts/ExpoArabic/ExpoArabic-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "ExpoArabic";
+  src: url("/fonts/ExpoArabic/ExpoArabic-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "ExpoArabic", sans-serif;
+}
+
+html[dir="rtl"] body {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir="ltr"] body {
+  text-align: left;
+  direction: ltr;
+}
+/* يجعل فقط مكوّن الهاتف LTR دون التأثير على النص */
+.react-tel-input {
+  direction: ltr !important;
+  text-align: right !important; /* حتى يظل الرقم على اليمين */
+}
+
+/* ترتيب العلم والزر */
+.react-tel-input .flag-dropdown {
+  left: 0 !important;
+  right: auto !important;
+}
+
+/* ترتيب حقل الإدخال */
+.react-tel-input .form-control {
+  text-align: right !important;
+  padding-right: 40px !important;
+}
+.scroll-rtl {
+  direction: ltr;  /* يخلي السكرول ع اليمين */
+  text-align: right;
+}
+.content-rtl{
+  direction: rtl;
+}
+.content-ltr{
+  direction: ltr;
+}
+.text-primary{
+  color: #FF2B77;
+}
+
+.text-secondary{
+color: #3B4057;
+}
+.headers{
+  color: #170F49;
+}
+.text-style {
+  color: #DDDDDD;
+  font-size: 20px;
+}
+.blur-btn-style{
+  width: 215px;
+  height: 56px;
+  border-radius: 12px;
+  font-size: 28px;
+}
+.photos-cards-style{
+  border: solid 1px #d0d2d4;
+  border-radius: 13px;
+}
+.card-title{
+  font-size: 23px;
+  color: #3B4057;
+}
+.card-description{
+  font-size: 18px;
+  color: #3B4057 ;
+}
+.services-cards-style{
+ border: none;
+ background-color: #FFF8FC;
+ border-radius: 16px;
+}
+.bg-steps{
+  background-color: #FBFBFB;
+}
+.ready-section {
+  background-color: #FF2B77;
+  background-image: url('/svg/union.svg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 45px;
+  overflow: hidden;
+}
+.login-left-side{
+    background-color: #FF2B77;
+  background-image: url('/svg/union.svg');
+  background-size: cover;
+    background-position: center;
+  border-radius: 10px;
+  margin: 10px;
+}
+.input-style{
+border: 1px solid #F4F4F6 !important;
+background-color: #F4F4F6 !important;
+color: #73737C !important;
+border-radius: 5px !important;
+height: 40px;
+outline: none;
+text-align: right;
+padding-right: 10px;
+}
+.input-style :focus{
+  outline: none !important;
+}
+.login-btn{
+  height: 40px !important;
+  background-color: #FF2B77;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 14px;
+}
+.shipping-qus-section{
+ background: linear-gradient(180deg, #FFFFFF 0%, #FFF0F7 100%);
+}
+.review-cards{
+border: 1px solid #E6EAEE;
+border-radius: 20px;
+padding: 12px;
+}
+.products-background {
+  position: relative;
+  overflow: hidden;
+
+}
+
+.products-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/svg/background.svg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: 0; 
+  pointer-events: none;
+}
+.privacy-policy::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/svg/background.svg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: 0; 
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  section .mobile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    text-align: center;
+  }
+
+  section .mobile-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    object-fit: cover;
+  }
+
+  section .mobile-grid h3 {
+    grid-column: span 2;
+    font-size: 2rem;
+    margin-top: 10px;
+    color: #FF2B77;
+    font-weight: bold;
+  }
+}
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
