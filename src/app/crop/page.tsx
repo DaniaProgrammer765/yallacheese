@@ -1,12 +1,10 @@
 "use client";
-
 import { useRouter, useSearchParams } from "next/navigation";
 import Cropper from "react-easy-crop";
 import { useState, useCallback } from "react";
 import Header from "@/components/header";
 import type { Area } from "react-easy-crop";
 import "@/styles/range.css";
-import Image from "next/image";
 
 export default function CropPage() {
   const router = useRouter();
