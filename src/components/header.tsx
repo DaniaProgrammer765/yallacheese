@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Menu from "./Menu";
 import Login from "./Login";
 import { usePathname, useRouter } from "next/navigation";
