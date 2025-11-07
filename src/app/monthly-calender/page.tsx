@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useRouter } from "next/navigation";
 
 const MONTHS = [
@@ -103,21 +102,6 @@ export default function MonthlyCalendarPage() {
     setMonthFiles(newFiles);
   };
 
-  // ✅ تبديل الصور بالسحب
-  const onDragEnd = (result: any) => {
-    const { source, destination } = result;
-    if (!destination) return;
-    const from = source.index;
-    const to = destination.index;
-    if (from === to) return;
-    const imgs = [...monthImages];
-    const files = [...monthFiles];
-    [imgs[from], imgs[to]] = [imgs[to], imgs[from]];
-    [files[from], files[to]] = [files[to], files[from]];
-    setMonthImages(imgs);
-    setMonthFiles(files);
-  };
-
   const filledCount = monthImages.filter(Boolean).length;
   const allFilled = filledCount === 12;
 
@@ -156,145 +140,120 @@ export default function MonthlyCalendarPage() {
       {/* ✅ شبكة الأشهر */}
       {monthImages.some(Boolean) && (
         <div className="max-w-6xl w-full mx-auto mt-10 mb-16">
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="months" direction="horizontal">
-              {(provided: any) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {MONTHS.map((m, idx) => {
+              const weeks = buildMonthGrid(currentYear, idx);
+              const img = monthImages[idx];
+              return (
                 <div
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+                  key={m}
+                  className={`relative bg-white border border-[#E2E2E2] shadow-sm p-3 flex flex-col transition-all overflow-hidden`}
+                  style={{
+                    backgroundColor,
+                    color: "#222",
+                    width: sizes[selectedSize as keyof typeof sizes].width,
+                  }}
                 >
-                  {MONTHS.map((m, idx) => {
-                    const weeks = buildMonthGrid(currentYear, idx);
-                    const img = monthImages[idx];
-                    return (
-                      <Draggable
-                        key={m}
-                        draggableId={`month-${idx}`}
-                        index={idx}
-                      >
-                        {(prov: any, snapshot: any) => (
+                  <div className="w-full h-[220px] bg-gray-200 overflow-hidden">
+                    {img ? (
+                      <img
+                        src={img}
+                        alt={`${m}-${currentYear}`}
+                        className="w-full h-full object-cover"
+                        style={{
+                          filter:
+                            effects[
+                              selectedEffect as keyof typeof effects
+                            ],
+                        }}
+                      />) : (
+                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                        صورة الشهر
+                      </div>
+                    )}
+                  </div>
+
+                  {/* العنوان */}
+                  <div className="px-4 pt-4 flex flex-col gap-2 self-end">
+                    <div className="flex">
+                     <h3 className="text-lg font-medium mt-0.5 ml-1">{m}</h3>
+                    <h2 className="text-2xl font-semibold leading-none">{String(idx + 1).padStart(2, "0")}</h2>
+                    </div>
+                    <div className="w-18 h-[2px] bg-gray-800 mx-auto -mt-2 ml-3 mb-3" />
+                  </div>
+
+                  {/* جدول الأيام */}
+                  <div className="px-4 pb-3 content-ltr">
+                    <div className="grid grid-cols-7 gap-1 text-[11px] text-center text-gray-600 mb-2 font-semibold">
+                      {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((d) => (
+                        <div
+                          key={d}
+                          className={`uppercase ${
+                            d === "FRI" ? "text-[#3EB489]" : ""
+                          }`}
+                        >
+                          {d}
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="grid grid-cols-7 gap-1 text-center text-sm">
+                      {weeks.flat().map((day, i) => {
+                        const col = i % 7;
+                        const isFri = col === 5;
+                        return (
                           <div
-                            ref={prov.innerRef}
-                            {...prov.draggableProps}
-                            {...prov.dragHandleProps}
-                            className={`relative bg-white border border-[#E2E2E2] shadow-sm p-3 flex flex-col transition-all
-  overflow-hidden transform ${
-                              snapshot.isDragging ? "scale-105 z-30" : ""
+                            key={i}
+                            className={`flex items-center justify-center text-xs ${
+                              day
+                                ? isFri
+                                  ? "text-[#3EB489]"
+                                  : "text-gray-800"
+                                : "text-gray-300"
                             }`}
-                            style={{
-                              backgroundColor,
-                              color: "#222",
-                              width:
-                                sizes[selectedSize as keyof typeof sizes].width,
-                            }}
                           >
-                            <div className="w-full h-[220px] bg-gray-200 overflow-hidden">
-                              {img ? (
-                                <img
-                                  src={img}
-                                  alt={`${m}-${currentYear}`}
-                                  className="w-full h-full object-cover"
-                                  style={{
-                                    filter:
-                                      effects[
-                                        selectedEffect as keyof typeof effects
-                                      ],
-                                  }}
-                                />) : (
-                                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                                  صورة الشهر
-                                </div>
-                              )}
-                            </div>
-
-                            {/* العنوان */}
-                            <div className="px-4 pt-4 flex flex-col gap-2 self-end">
-                              <div className="flex">
-                               <h3 className="text-lg font-medium mt-0.5 ml-1">{m}</h3>
-                              <h2 className="text-2xl font-semibold leading-none">{String(idx + 1).padStart(2, "0")}</h2>
-                              </div>
-                              <div className="w-18 h-[2px] bg-gray-800 mx-auto -mt-2 ml-3 mb-3" />
-                            </div>
-
-                            {/* جدول الأيام */}
-                            <div className="px-4 pb-3 content-ltr">
-                              <div className="grid grid-cols-7 gap-1 text-[11px] text-center text-gray-600 mb-2 font-semibold">
-                                {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((d) => (
-                                  <div
-                                    key={d}
-                                    className={`uppercase ${
-                                      d === "FRI" ? "text-[#3EB489]" : ""
-                                    }`}
-                                  >
-                                    {d}
-                                  </div>
-                                ))}
-                              </div>
-
-                              <div className="grid grid-cols-7 gap-1 text-center text-sm">
-                                {weeks.flat().map((day, i) => {
-                                  const col = i % 7;
-                                  const isFri = col === 5;
-                                  return (
-                                    <div
-                                      key={i}
-                                      className={`flex items-center justify-center text-xs ${
-                                        day
-                                          ? isFri
-                                            ? "text-[#3EB489]"
-                                            : "text-gray-800"
-                                          : "text-gray-300"
-                                      }`}
-                                    >
-                                      {day ?? ""}
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            </div>
-
-                            {/* أسفل البطاقة */}
-                            <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between content-ltr text-xs text-gray-500">
-                              {/* أزرار اليسار */}
-                              <div className="flex gap-3">
-                                <label
-                                  htmlFor={`file-${idx}`}
-                                  className="cursor-pointer hover:text-pink-500"
-                                >
-                                  تغيير
-                                </label>
-                                <input
-                                  id={`file-${idx}`}
-                                  type="file"
-                                  accept="image/*"
-                                  className="hidden"
-                                  onChange={(e) => {
-                                    const f = e.target.files?.[0] ?? null;
-                                    if (f) handleReplaceImage(idx, f);
-                                  }}
-                                />
-                                <button
-                                  onClick={() => removeImage(idx)}
-                                  className="hover:text-red-500"
-                                >
-                                  حذف
-                                </button>
-                              </div>
-
-                              {/* السنة */}
-                              <span className="font-semibold text-[16px] text-black">{currentYear}</span>
-                            </div>
+                            {day ?? ""}
                           </div>
-                        )}
-                      </Draggable>
-                    );
-                  })}
-                  {provided.placeholder}
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* أسفل البطاقة */}
+                  <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between content-ltr text-xs text-gray-500">
+                    {/* أزرار اليسار */}
+                    <div className="flex gap-3">
+                      <label
+                        htmlFor={`file-${idx}`}
+                        className="cursor-pointer hover:text-pink-500"
+                      >
+                        تغيير
+                      </label>
+                      <input
+                        id={`file-${idx}`}
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const f = e.target.files?.[0] ?? null;
+                          if (f) handleReplaceImage(idx, f);
+                        }}
+                      />
+                      <button
+                        onClick={() => removeImage(idx)}
+                        className="hover:text-red-500"
+                      >
+                        حذف
+                      </button>
+                    </div>
+
+                    {/* السنة */}
+                    <span className="font-semibold text-[16px] text-black">{currentYear}</span>
+                  </div>
                 </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+              );
+            })}
+          </div>
         </div>
       )}
       {showUpload && (
