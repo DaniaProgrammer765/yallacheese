@@ -1,17 +1,17 @@
 "use client";
 
 export const dynamic = "force-dynamic";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Cropper from "react-easy-crop";
 import { useState, useCallback } from "react";
 import Header from "@/components/header";
 import type { Area } from "react-easy-crop";
 import "@/styles/range.css";
+import { useCrop } from "@/context/CropContext";
 
 export default function CropPage() {
-  const router = useRouter();
-  const params = useSearchParams();
-  const imageUrl = params.get("img");
+const router = useRouter();
+const { imageUrl } = useCrop();
 
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);

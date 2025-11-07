@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useCrop } from "@/context/CropContext";
 
 export default function Products() {
   const [showUpload, setShowUpload] = useState(false);
@@ -17,6 +18,7 @@ export default function Products() {
   const [backgroundColor, setBackgroundColor] = useState<string>("#FFFFFF"); // ✅ لون الخلفية الافتراضي
 
   const router = useRouter();
+  const { setImageUrl } = useCrop();
 
   // تحميل الصور
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -141,9 +143,10 @@ export default function Products() {
               />
               {/* ✏️ أيقونة القلم للتعديل */}
               <button
-                onClick={() =>
-                  router.push(`/crop?img=${encodeURIComponent(src)}`)
-                }
+                onClick={() => {
+                  setImageUrl(images[i]);
+                  router.push("/crop");
+                }}
                 className="absolute bottom-4 right-2 p-1 hover:scale-110 transition-all duration-200"
                 title="تعديل الصورة"
               >
