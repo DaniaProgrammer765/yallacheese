@@ -136,7 +136,7 @@ export default function HomePage() {
 
       {/* ===== قسم اللوحات ===== */}
       <section className="bg-white py-10 text-center text-gray-800 relative z-20">
-        <h2 className="text-3xl text-secondary font-semibold mb-10 flex justify-center items-center">
+        <h2 className="text-xl md:text-3xl text-secondary font-semibold mb-10 flex justify-center items-center">
           ابدأ في سرد قصصك <span className="text-primary mr-2"> 
            الآن!</span>
           <img src="/icons/letter.svg" alt="" className="mb-12 relative left-2" />
@@ -162,7 +162,7 @@ export default function HomePage() {
       </section>
         {/* ===== قسم الخدمات ===== */}
       <section className="bg-white py-10 text-center text-gray-800 relative z-20">
-        <h2 className="text-3xl text-secondary font-semibold mb-10 flex justify-center items-center">
+        <h2 className="text-xl md:text-3xl text-secondary font-semibold mb-10 flex justify-center items-center">
          نحن هنا لتلبية  <span className="text-primary flex mr-2"> احتياجاتك
          </span>
           <img src="/icons/letter.svg" alt="" className="mb-12 relative left-2" />
@@ -188,7 +188,7 @@ export default function HomePage() {
       </section>
       {/* ===== قسم الخطوات ===== */}
 <section className="bg-steps py-10 text-center text-gray-800 relative z-20">
-  <h2 className="text-3xl text-secondary font-semibold mb-16 flex justify-center items-center">
+  <h2 className="text-lg md:text-3xl text-secondary font-semibold mb-16 flex justify-center items-center">
     خطوات بسيطة... وذكرياتك تصبح <span className="text-primary mr-2">ملموسة!</span>
      <img src="/icons/letter.svg" alt="" className="mb-12 relative left-2" />
   </h2>
@@ -222,8 +222,8 @@ export default function HomePage() {
         <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
           <img src="/svg/step2.svg" alt="step 2" className="w-60 md:w-72" />
         </div>
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-end mr-12 text-right">
-          <h4 className="self-center mr-8 text-xl text-primary font-bold mb-3">تعديل الصور ومعاينتها</h4>
+        <div className="w-full md:w-1/2 flex flex-col justify-center md:items-end md:mr-12 text-right">
+          <h4 className=" md:self-center md:mr-8 text-xl text-primary font-bold mb-3">تعديل الصور ومعاينتها</h4>
           <ul className="text-gray-600 space-y-2">
             <li>تظهر لك صفحة المعاينة لتعديل الصور المختارة.</li>
             <li>يمكنك تحريك الصور أو تغيير الإطارات.</li>
@@ -345,7 +345,7 @@ export default function HomePage() {
 {/* ===== قسم كل ما تحتاج لمعرفته قبل الطلب ===== */}
 <section className="bg-[#FBFBFB] py-10 text-gray-800 relative z-20">
   <div className="max-w-5xl mx-auto px-6">
-    <h2 className="text-3xl text-secondary font-semibold text-center mb-12 flex justify-center items-center">
+    <h2 className="text-xl md:text-3xl text-secondary font-semibold text-center mb-12 flex justify-center items-center">
       كل ما تحتاج لمعرفته قبل <span className="text-primary">الطلب.</span>
       <img src="/icons/letter.svg" alt="" className="mb-12 relative left-2" />
     </h2>
@@ -397,7 +397,7 @@ export default function HomePage() {
 </section>
 <section className="bg-white py-10 text-gray-800">
   <div className="max-w-6xl mx-auto px-6">
-    <h2 className="text-3xl font-semibold text-center text-secondary mb-12 flex justify-center items-center">
+    <h2 className="text-xl md:text-3xl font-semibold text-center text-secondary mb-12 flex justify-center items-center">
       آراء صادقة من <span className="text-primary mr-2">عملاء سعداء !</span>
       <img src="/icons/letter.svg" alt="" className="mb-12 relative left-2" />
     </h2>
