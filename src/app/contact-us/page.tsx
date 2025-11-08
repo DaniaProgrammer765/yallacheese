@@ -140,11 +140,11 @@ export default function ContactPage() {
         </div>
 
         {/* 🌸 الخط الوردي خلف الفورم تمامًا */}
-        <div className="absolute -bottom-15 inset-x-0 -z-10">
+        <div className="absolute bottom-[-80px] inset-x-0 z-0">
           <img
             src="/svg/wide-line.svg"
             alt="wide pink line"
-            className="w-screen h-[80px] md:h-[120px] object-cover"
+            className="w-screen h-auto object-cover"
           />
         </div>
       </section>
