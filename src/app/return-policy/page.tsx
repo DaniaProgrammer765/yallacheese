@@ -30,7 +30,7 @@ export default function ReturnPolicy() {
         </p>
       </section>
 
-      <section className="bg-white text-secondary font-book text-[20px] w-full pr-10 ">
+      <section className="bg-white text-secondary font-book text-[20px] w-full pr-5 md:pr-10 ">
         {/* فقرة الشراء بواسطة بطاقة الإعتماد */}
         <div className="mb-8">
           <p className="text-primary font-book text-2xl mb-4">
