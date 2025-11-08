@@ -25,30 +25,27 @@ export default function ContactPage() {
           دائماً لتقديم المساعدة والإجابة عن جميع استفساراتك بكل دقة واهتمام.
         </p>
       </section>
-
       {/* 💌 Contact Info Boxes */}
-      <section className="px-6 md:px-20 mb-12 z-1">
-        <div className="flex flex-col md:flex-row justify-between items-center bg-white shadow-md rounded-2xl overflow-hidden md:divide-none md:divide-x">
+      <section className="px-6 md:px-20 mb-12 relative z-1">
+        <div className="relative flex flex-col md:flex-row justify-between items-center bg-white rounded-2xl overflow-hidden md:divide-none md:divide-x shadow-lg">
+          {/* ظل علوي */}
+          <span className="absolute top-0 left-0 w-full h-1 bg-gradient-to-b from-black/6 to-transparent"></span>
           {/* Email */}
           <div className="flex-1 text-center py-6 px-4 relative">
             <img src="/svg/location.svg" alt="" className="mx-auto mb-3" />
           </div>
-
           {/* 🔸 الخط لا يظهر على الموبايل */}
           <div className="hidden md:block">
             <img src="/svg/line.svg" alt="" className="mx-auto mb-3" />
           </div>
-
           {/* Phone */}
           <div className="flex-1 text-center py-6 px-4 relative">
             <img src="/svg/contact.svg" alt="" className="mx-auto mb-3" />
           </div>
-
           {/* 🔸 الخط لا يظهر على الموبايل */}
           <div className="hidden md:block">
             <img src="/svg/line.svg" alt="" className="mx-auto mb-3" />
           </div>
-
           {/* Location */}
           <div className="flex-1 text-center py-6 px-4 relative">
             <img src="/svg/email.svg" alt="" className="mx-auto mb-3" />
