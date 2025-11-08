@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Menu({
   isOpen,
@@ -13,6 +14,12 @@ export default function Menu({
   onClose: () => void;
   onLoginOpen: () => void;
 }) {
+  const pathname = usePathname();
+  // ✅ إغلاق السايد بار تلقائيًا عند تغيّر الصفحة
+  useEffect(() => {
+    if (isOpen) onClose();
+  }, [pathname]);
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
@@ -29,7 +36,7 @@ export default function Menu({
 
       {/* القائمة الجانبية */}
       <aside
-    className={`fixed top-0 left-0 h-full w-[320px] bg-white shadow-xl z-50 transform transition-transform duration-300
+        className={`fixed top-0 left-0 h-full w-[320px] bg-white shadow-xl z-50 transform transition-transform duration-300
     ${isOpen ? "translate-x-0" : "-translate-x-full"}
     rounded-tr-[18px] rounded-br-[18px]`}
       >
