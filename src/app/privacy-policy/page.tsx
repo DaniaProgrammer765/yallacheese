@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
           أو خدماتنا.
         </p>
       </section>
-      <section className="bg-white text-secondary font-book text-[20px] ">
+      <section className="bg-white text-secondary font-book text-[20px] p-10">
         <span>اتفاقية خصوصية المستخدم:</span>
         {/* نص الخصوصية */}
         <div className="space-y-6 text-[17px] leading-8">
