@@ -122,7 +122,7 @@ export default function MonthlyCalendarPage() {
   };
 
   return (
-    <section className="relative bg-white text-gray-800 pt-[100px] px-4 min-h-screen flex flex-col items-center justify-start">
+    <section className="relative bg-white text-gray-800 pt-[100px] px-4 min-h-screen flex flex-col items-center products-background justify-start">
       {/* زر إنشاء الرزنامة */}
       {!monthImages.some(Boolean) && (
         <button
