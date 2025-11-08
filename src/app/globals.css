@@ -116,6 +116,7 @@ color: #3B4057;
 .card-title{
   font-size: 23px;
   color: #3B4057;
+  font-weight: 500;
 }
 .card-description{
   font-size: 18px;
@@ -171,6 +172,8 @@ padding-right: 10px;
  background: linear-gradient(180deg, #FFFFFF 0%, #FFF0F7 100%);
 }
 .review-cards{
+width: 260px;
+height: 270px;
 border: 1px solid #E6EAEE;
 border-radius: 20px;
 padding: 12px;

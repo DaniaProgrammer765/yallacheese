@@ -1,53 +1,67 @@
+"use client";
+
 import Card from "@/components/Card";
 import Review from "@/components/Review";
 import Footer from "@/components/Footer";
 import Image from "next/image";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function HomePage() {
+  const [currentReview, setCurrentReview] = useState(0);
+
   const storiesCards = [
     {
       title: "صور بإطار جاهز",
       description: "حمّل 12 صورة تعبر عن كل شهر واحتفل بلحظاتك الجميلة.",
       image: "/images/frame1.png",
+      link: "/products",
     },
     {
       title: "صور مطبوعة عادية",
       description:
         "صورك كما هي، بجودة عالية وبدون إضافات. مثالية للألبومات أو الإهداءات.",
       image: "/images/normal-photo.png",
+      link: "/products/normal",
     },
     {
       title: "صور مغناطيسية",
       description:
         "صورك تتحوّل إلى مغناطيسات تُلصق على الثلاجة أو أي سطح معدني.",
       image: "/images/magnetic.png",
+      link: "/products/normal",
     },
     {
       title: "الرزنامة السنوية",
       description: "حمّل 12 صورة تعبر عن كل شهر واحتفل بلحظاتك الجميلة.",
       image: "/images/year-calendar.png",
+      link: "/products/normal",
     },
     {
       title: "إطارات صور لاصقة",
       description: "صورك مطبوعة على إطارات تلتصق على الحائط دون مسامير.",
       image: "/images/sticky-frame.png",
+      link: "/products/normal",
     },
     {
       title: "لوحات صور خشبية",
       description:
         "صورك تُطبع على ألواح خشبية سميكة — لمسة ديكور أنيقة ودافئة.",
       image: "/images/wooden-board.png",
+      link: "/products/normal",
     },
     {
       title: "تقويم المكتب",
       description: "تقويم جميل يوضع على المكتب يحتوي على صورك المفضلة لكل شهر.",
       image: "/images/desk-calendar.png",
+      link: "/products/normal",
     },
     {
       title: "الرزنامة الشهرية",
       description:
         "كل شهر بصورة مختلفة — مثالية لتوثيق اللحظات على مدار السنة.",
       image: "/images/monthly-calendar.png",
+      link: "/monthly-calender",
     },
   ];
   const servicesCards = [
@@ -91,20 +105,50 @@ export default function HomePage() {
     },
     {
       id: 4,
-      title: "أماني خالد",
-      description: "التصميم كان مطابق للصورة تماماً...",
-      image: "/images/user3.jpg",
+      title: "فاطمة أحمد",
+      description: "الخدمة سريعة والمنتج راقي جداً...",
+      image: "/images/user1.jpg",
       rating: 5,
     },
     {
       id: 5,
-      title: "أماني خالد",
-      description: "التصميم كان مطابق للصورة تماماً...",
+      title: "نورة محمد",
+      description: "جودة رائعة وأسعار مناسبة...",
+      image: "/images/user2.jpg",
+      rating: 4,
+    },
+    {
+      id: 6,
+      title: "هديل سامي",
+      description: "التوصيل كان سريع والمنتج ممتاز...",
       image: "/images/user3.jpg",
       rating: 5,
     },
+    {
+      id: 7,
+      title: "لينا كمال",
+      description: "تجربة رائعة سأكررها بالتأكيد...",
+      image: "/images/user1.jpg",
+      rating: 5,
+    },
   ];
+  const reviewsPerPage = 4;
+  const totalPages = Math.ceil(testimonials.length / reviewsPerPage);
 
+  // دوال التحكم في الـ Carousel
+  const nextReview = () => {
+    setCurrentReview((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
+  };
+
+  const prevReview = () => {
+    setCurrentReview((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
+  };
+
+  // الحصول على الكروت الحالية المعروضة
+  const currentReviews = testimonials.slice(
+    currentReview * reviewsPerPage,
+    (currentReview + 1) * reviewsPerPage
+  );
   return (
     <div className="text-white relative overflow-hidden">
       {/* ===== خلفية الفيديو ===== */}
@@ -146,9 +190,10 @@ export default function HomePage() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 px-8 max-w-6xl mx-auto">
           {storiesCards.map((card, i) => (
-            <div
+            <Link
+              href={card.link}
               key={i}
-              className="bg-white photos-cards-style overflow-hidden hover:shadow-xl transition transform hover:-translate-y-1"
+              className="bg-white photos-cards-style overflow-hidden hover:shadow-xl transition transform hover:-translate-y-1 block"
             >
               <img
                 src={card.image}
@@ -159,12 +204,12 @@ export default function HomePage() {
                 <h3 className="card-title mb-2">{card.title}</h3>
                 <p className="card-description">{card.description}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
       {/* ===== قسم الخدمات ===== */}
-      <section className="bg-white py-10 text-center text-gray-800 relative z-20">
+      <section className="bg-white py-10 text-center text-gray-800 relative z-20 mb-10">
         <h2 className="text-xl md:text-3xl text-secondary font-semibold mb-10 flex justify-center items-center">
           نحن هنا لتلبية{" "}
           <span className="text-primary flex mr-2"> احتياجاتك</span>
@@ -194,7 +239,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* ===== قسم الخطوات ===== */}
-      <section className="bg-steps py-10 text-center text-gray-800 relative z-20">
+      <section className="bg-steps py-10 text-center text-gray-800 relative z-20 mb-10">
         <h2 className="text-lg md:text-3xl text-secondary font-semibold mb-16 flex justify-center items-center">
           خطوات بسيطة... وذكرياتك تصبح{" "}
           <span className="text-primary mr-2">ملموسة!</span>
@@ -279,8 +324,8 @@ export default function HomePage() {
         </div>
       </section>
       {/* كل صورة حكاية Section */}
-      <section className="relative bg-white py-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 hidden md:block">
+      <section className="relative bg-white py-10 overflow-hidden mb-10">
+        <div className="max-w-8xl mx-auto px-6 hidden md:block">
           {/* --- TOP ROW (5 صور) --- */}
           <div className="flex items-center justify-between gap-4 mb-6">
             <div className="w-1/5 overflow-hidden rounded-2xl">
@@ -323,10 +368,9 @@ export default function HomePage() {
               />
             </div>
           </div>
-
           {/* --- MIDDLE ROW (3 صور) --- */}
           <div className="flex items-center justify-between gap-4 mb-6">
-            <div className="overflow-hidden rounded-2xl w-44 h-40">
+            <div className="overflow-hidden rounded-2xl h-40">
               <img
                 src="/images/photo7.png"
                 alt=""
@@ -338,7 +382,6 @@ export default function HomePage() {
                 صورة
               </h3>
             </div>
-
             <div className="w-1/2 flex items-center justify-center relative">
               <div className="grid grid-cols-2 gap-4">
                 <div className="overflow-hidden rounded-2xl ">
@@ -415,8 +458,8 @@ export default function HomePage() {
         </div>
       </section>
       {/* ===== قسم كل ما تحتاج لمعرفته قبل الطلب ===== */}
-      <section className="bg-[#FBFBFB] py-10 text-gray-800 relative z-20">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="bg-[#FBFBFB] py-10 text-gray-800 relative z-20 mb-10">
+        <div className="max-w-5xl mx-auto px-6 mb-10">
           <h2 className="text-xl md:text-3xl text-secondary font-semibold text-center mb-12 flex justify-center items-center">
             كل ما تحتاج لمعرفته قبل <span className="text-primary">الطلب.</span>
             <img
@@ -510,7 +553,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="bg-white py-10 text-gray-800">
+      {/* اراء صادقة */}
+      <section className="bg-white py-10 text-gray-800 mb-10">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-xl md:text-3xl font-semibold text-center text-secondary mb-12 flex justify-center items-center">
             آراء صادقة من{" "}
@@ -522,20 +566,44 @@ export default function HomePage() {
             />
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-            {testimonials.map((t) => (
-              <Review
-                key={t.id}
-                name={t.title}
-                description={t.description}
-                rating={t.rating}
-              />
-            ))}
+          {/* Carousel Container */}
+          <div className="relative">
+            {/* Reviews Display */}
+            <div className="overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-12 transition-opacity duration-300">
+                {currentReviews.map((t) => (
+                  <Review
+                    key={t.id}
+                    name={t.title}
+                    description={t.description}
+                    rating={t.rating}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <div className="flex justify-right items-center gap-4 mt-8">
+              <button
+                onClick={prevReview}
+                className="cursor-pointer"
+                aria-label="السابق"
+              >
+                <img src="/icons/arrow3.svg" alt="السابق" className="w-6 h-6" />
+              </button>
+
+              <button
+                onClick={nextReview}
+                className="cursor-pointer"
+                aria-label="التالي"
+              >
+                <img src="/icons/arrow4.svg" alt="التالي" className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
-
-      <section className="relative py-10 flex justify-center bg-white">
+      <section className="relative py-10 flex justify-center bg-white mb-10">
         {/* المستطيل */}
         <div className="relative w-full max-w-5xl rounded-[45px] px-8 py-8 text-center text-white overflow-hidden ready-section">
           <h2 className="text-[86px] font-bold">هل أنت مستعدّ؟</h2>

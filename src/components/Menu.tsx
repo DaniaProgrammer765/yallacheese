@@ -29,11 +29,11 @@ export default function Menu({
 
       {/* القائمة الجانبية */}
       <aside
-        className={`fixed top-0 left-0 h-full w-[320px] bg-white shadow-xl z-50 transform transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+    className={`fixed top-0 left-0 h-full w-[320px] bg-white shadow-xl z-50 transform transition-transform duration-300
+    ${isOpen ? "translate-x-0" : "-translate-x-full"}
+    rounded-tr-[18px] rounded-br-[18px]`}
       >
-        <div className="p-6 flex flex-col text-right h-full overflow-y-auto scroll-rtl">
+        <div className="p-6 flex flex-col text-right h-full overflow-y-auto">
           {/* الشعار */}
           <div className="flex mb-4 content-rtl">
             <Image src="/logo.svg" alt="Logo" width={90} height={40} />
@@ -106,7 +106,8 @@ export default function Menu({
               <li className="font-expo font-book">
                 <Link href="/contact-us">تواصل معنا</Link>
               </li>
-              <div className="flex justify-between items-center mt-4">
+              <div className="flex justify-between items-center">
+                <span className="font-expo font-book">اللغة</span>
                 <div className="flex bg-gray-100 overflow-hidden border border-pink-400">
                   {/* زر عربي */}
                   <button className="bg-[#FF2B77] text-white px-3 py-1 text-sm font-medium transition">
@@ -118,7 +119,6 @@ export default function Menu({
                     English
                   </button>
                 </div>
-                <span className="font-expo font-book">اللغة</span>
               </div>
 
               {/* الدول */}

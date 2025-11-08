@@ -1,16 +1,10 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-
 
 export default function Footer() {
-    const pathname = usePathname();
-    const MainPage = ["/"];
-    const isMain = MainPage.includes(pathname);
-    const router = useRouter();
   return (
-    <footer className={`w-full text-gray-700 pt-12 pb-4 border-t border-gray-100 ${isMain ? `bg-white`: `bg-[#FBF9F9]`}`}>
+    <footer className={`w-full text-gray-700 pt-12 pb-4 border-t border-gray-100 bg-[#FBF9F9]`}>
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10 text-right">
         {/* العمود 1:  الشعار و النص */}
         <div className="flex flex-col">
