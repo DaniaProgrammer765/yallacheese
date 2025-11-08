@@ -68,7 +68,7 @@ export default function Header() {
                 : `/icons/whitepageLogo.svg`
             }
             alt="Logo"
-            className="h-12 object-contain drop-shadow-lg"
+            className="h-14 object-contain drop-shadow-lg"
           />
         </div>
 
