@@ -166,7 +166,7 @@ export default function HomePage() {
     },
   ];
   const [currentIndex, setCurrentIndex] = useState(1);
-  const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const scrollToIndex = (idx: number) => {
     const node = itemRefs.current[idx];
@@ -634,12 +634,14 @@ export default function HomePage() {
                 {testimonials.map((t, i) => (
                   <div
                     key={t.id}
-                    ref={(el) => (itemRefs.current[i] = el)}
+                    ref={(el) => {
+                      itemRefs.current[i] = el;
+                    }}
                     className={`flex-shrink-0 
-                transition-transform duration-300 snap-center
-                ${i === currentIndex ? "scale-100" : "scale-95 opacity-80"}
-               ${i === 0 && i !== currentIndex ? "mr-[-50px]" : ""}
-                `}
+                    transition-transform duration-300 snap-center
+                   ${i === currentIndex ? "scale-100" : "scale-95 opacity-80"}
+                   ${i === 0 && i !== currentIndex ? "mr-[-50px]" : ""}
+                  `}
                   >
                     <Review
                       name={t.title}
