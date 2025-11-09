@@ -105,7 +105,7 @@ export default function Menu({
                 <Link href="/about-us">من نحن</Link>
               </li>
               <li>
-                <Link href="/return-policy">سياسة الترجع</Link>
+                <Link href="/return-policy">سياسة الترجيع</Link>
               </li>
               <li>
                 <Link href="/privacy-policy">سياسة الخصوصية</Link>
