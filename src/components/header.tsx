@@ -30,7 +30,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full h-[70px] flex items-center justify-between z-50 px-6 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full h-[91px] flex items-center justify-between z-50 px-6 transition-all duration-300 ${
           isMain
             ? scrolled
               ? "bg-white shadow-md"
@@ -52,7 +52,7 @@ export default function Header() {
                 : `/icons/product2.svg`
             }
             alt="Products"
-            className="h-8 w-8 object-contain"
+            className="h-[51px] w-[51px] object-contain"
           />
         </button>
 
@@ -84,7 +84,7 @@ export default function Header() {
               isMain && !scrolled ? `/icons/menu.svg` : `/icons/menu2.svg`
             }
             alt="Menu"
-            className="h-8 w-8 object-contain"
+            className="h-[51px] w-[51px] object-contain"
           />
         </button>
       </header>

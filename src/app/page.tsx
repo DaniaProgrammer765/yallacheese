@@ -4,12 +4,10 @@ import Card from "@/components/Card";
 import Review from "@/components/Review";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 
 export default function HomePage() {
-  const [currentReview, setCurrentReview] = useState(0);
-
   const storiesCards = [
     {
       title: "صور بإطار جاهز",
@@ -131,24 +129,68 @@ export default function HomePage() {
       image: "/images/user1.jpg",
       rating: 5,
     },
+    {
+      id: 8,
+      title: "مريم حسام",
+      description: "تصميم جميل وجودة عالية في الطباعة...",
+      image: "/images/user2.jpg",
+      rating: 4,
+    },
+    {
+      id: 9,
+      title: "هدى سامي",
+      description: "خدمة ممتازة وسريعة، أنصح بها بشدة...",
+      image: "/images/user3.jpg",
+      rating: 5,
+    },
+    {
+      id: 10,
+      title: "نور أحمد",
+      description: "المنتج وصلني كما توقعت، تجربة رائعة...",
+      image: "/images/user1.jpg",
+      rating: 5,
+    },
+    {
+      id: 11,
+      title: "جمال علي",
+      description: "الطباعة ممتازة والألوان رائعة...",
+      image: "/images/user2.jpg",
+      rating: 4,
+    },
+    {
+      id: 12,
+      title: "سمر خالد",
+      description: "سأكرر الطلب بالتأكيد، خدمة ممتازة...",
+      image: "/images/user3.jpg",
+      rating: 5,
+    },
   ];
-  const reviewsPerPage = 4;
-  const totalPages = Math.ceil(testimonials.length / reviewsPerPage);
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
 
-  // دوال التحكم في الـ Carousel
-  const nextReview = () => {
-    setCurrentReview((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
+  const scrollToIndex = (idx: number) => {
+    const node = itemRefs.current[idx];
+    if (node) {
+      node.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+      setCurrentIndex(idx);
+    }
   };
 
-  const prevReview = () => {
-    setCurrentReview((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
+  const prev = () => {
+    const nextIdx =
+      currentIndex === 0 ? testimonials.length - 1 : currentIndex - 1;
+    scrollToIndex(nextIdx);
   };
 
-  // الحصول على الكروت الحالية المعروضة
-  const currentReviews = testimonials.slice(
-    currentReview * reviewsPerPage,
-    (currentReview + 1) * reviewsPerPage
-  );
+  const next = () => {
+    const nextIdx =
+      currentIndex === testimonials.length - 1 ? 0 : currentIndex + 1;
+    scrollToIndex(nextIdx);
+  };
   return (
     <div className="text-white relative overflow-hidden">
       {/* ===== خلفية الفيديو ===== */}
@@ -325,7 +367,8 @@ export default function HomePage() {
       </section>
       {/* كل صورة حكاية Section */}
       <section className="relative bg-white py-10 overflow-hidden mb-10">
-        <div className="max-w-8xl mx-auto px-6 hidden md:block">
+        {/* إزالة أي padding ومركزية */}
+        <div className="w-full hidden md:block">
           {/* --- TOP ROW (5 صور) --- */}
           <div className="flex items-center justify-between gap-4 mb-6">
             <div className="w-1/5 overflow-hidden rounded-2xl">
@@ -554,55 +597,102 @@ export default function HomePage() {
         </div>
       </section>
       {/* اراء صادقة */}
-      <section className="bg-white py-10 text-gray-800 mb-10">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="bg-white py-10 text-gray-800 mb-10 w-screen overflow-hidden">
+        <div className="w-screen">
           <h2 className="text-xl md:text-3xl font-semibold text-center text-secondary mb-12 flex justify-center items-center">
             آراء صادقة من{" "}
             <span className="text-primary mr-2">عملاء سعداء !</span>
-            <img
+            <Image
               src="/icons/letter.svg"
               alt=""
+              width={28}
+              height={28}
               className="mb-12 relative left-2"
             />
           </h2>
 
-          {/* Carousel Container */}
+          {/* Carousel */}
           <div className="relative">
-            {/* Reviews Display */}
-            <div className="overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-12 transition-opacity duration-300">
-                {currentReviews.map((t) => (
-                  <Review
+            <div
+              className="overflow-x-auto no-scrollbar"
+              style={{
+                scrollSnapType: "x mandatory",
+                scrollPadding: "0",
+                paddingLeft: "calc(50vw - 50%)", // لبدء السلايدر من نصف الكرت
+              }}
+              role="region"
+              aria-label="شهادات العملاء"
+            >
+              <div
+                className="flex items-center"
+                style={{
+                  gap: "0px", // الكروت ملتصقة تمامًا
+                  padding: "0",
+                  margin: "0",
+                }}
+              >
+                {testimonials.map((t, i) => (
+                  <div
                     key={t.id}
-                    name={t.title}
-                    description={t.description}
-                    rating={t.rating}
-                  />
+                    ref={(el) => (itemRefs.current[i] = el)}
+                    className={`flex-shrink-0 
+                transition-transform duration-300 snap-center
+                ${i === currentIndex ? "scale-100" : "scale-95 opacity-80"}
+               ${i === 0 && i !== currentIndex ? "mr-[-50px]" : ""}
+                `}
+                  >
+                    <Review
+                      name={t.title}
+                      description={t.description}
+                      rating={t.rating}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
-
-            {/* Navigation Arrows */}
-            <div className="flex justify-right items-center gap-4 mt-8">
+            {/* Navigation */}
+            <div className="flex items-center gap-4 mt-6 justify-right mr-15">
               <button
-                onClick={prevReview}
-                className="cursor-pointer"
+                onClick={prev}
                 aria-label="السابق"
+                className="cursor-pointer"
               >
-                <img src="/icons/arrow3.svg" alt="السابق" className="w-6 h-6" />
+                <Image
+                  src="/icons/arrow3.svg"
+                  alt="السابق"
+                  width={20}
+                  height={20}
+                />
               </button>
 
               <button
-                onClick={nextReview}
-                className="cursor-pointer"
+                onClick={next}
                 aria-label="التالي"
+                className="cursor-pointer"
               >
-                <img src="/icons/arrow4.svg" alt="التالي" className="w-6 h-6" />
+                <Image
+                  src="/icons/arrow4.svg"
+                  alt="التالي"
+                  width={20}
+                  height={20}
+                />
               </button>
             </div>
           </div>
         </div>
+
+        {/* إخفاء السكرول */}
+        <style jsx>{`
+          .no-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}</style>
       </section>
+
       <section className="relative py-10 flex justify-center bg-white mb-10">
         {/* المستطيل */}
         <div className="relative w-full max-w-5xl rounded-[45px] px-8 py-8 text-center text-white overflow-hidden ready-section">
