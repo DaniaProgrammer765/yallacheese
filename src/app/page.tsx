@@ -20,14 +20,14 @@ export default function HomePage() {
       description:
         "صورك كما هي، بجودة عالية وبدون إضافات. مثالية للألبومات أو الإهداءات.",
       image: "/images/normal-photo.png",
-      link: "/products/normal",
+      link: "/normal-photos",
     },
     {
       title: "صور مغناطيسية",
       description:
         "صورك تتحوّل إلى مغناطيسات تُلصق على الثلاجة أو أي سطح معدني.",
       image: "/images/magnetic.png",
-      link: "/products/normal",
+      link: "/normal-photos",
     },
     {
       title: "الرزنامة السنوية",

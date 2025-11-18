@@ -69,10 +69,10 @@ export default function Menu({
                 <Link href="/framed-photos">صور بإطار رائع</Link>
               </li>
               <li>
-                <Link href="#">صور مطبوعة عادية</Link>
+                <Link href="/normal-photos">صور مطبوعة عادية</Link>
               </li>
               <li>
-                <Link href="#">صور مغناطيسية</Link>
+                <Link href="/normal-photos">صور مغناطيسية</Link>
               </li>
               <li>
                 <Link href="#">الرزنامة السنوية</Link>
