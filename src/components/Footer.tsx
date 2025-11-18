@@ -48,7 +48,7 @@ export default function Footer() {
           <ul className="space-y-2 text-sm mt-2 list-none">
             <li className="flex items-center gap-2">
               <span className="text-primary text-lg leading-none">•</span>
-              <span>حول</span>
+              <Link href="/about-us">حول</Link>
             </li>
             <li className="flex items-center gap-2">
               <span className="text-primary text-lg leading-none">•</span>
@@ -79,7 +79,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center  gap-2">
               <span className="text-primary text-lg leading-none">•</span>
-              <span>السياسة والخصوصية</span>
+              <Link href="/privacy-policy">السياسة والخصوصية</Link>
             </li>
             <li className="flex items-center  gap-2">
               <span className="text-primary text-lg leading-none">•</span>
@@ -87,7 +87,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center  gap-2">
               <span className="text-primary text-lg leading-none">•</span>
-              <span>اتصل بنا</span>
+              <Link href="/contact-us">اتصل بنا</Link>
             </li>
           </ul>
         </div>

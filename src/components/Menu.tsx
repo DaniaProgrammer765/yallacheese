@@ -66,7 +66,7 @@ export default function Menu({
             <h3 className="text-primary font-semibold mb-2">منتجاتنا</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
               <li>
-                <Link href="/products">صور بإطار رائع</Link>
+                <Link href="/framed-photos">صور بإطار رائع</Link>
               </li>
               <li>
                 <Link href="#">صور مطبوعة عادية</Link>

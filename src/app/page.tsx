@@ -13,7 +13,7 @@ export default function HomePage() {
       title: "صور بإطار جاهز",
       description: "حمّل 12 صورة تعبر عن كل شهر واحتفل بلحظاتك الجميلة.",
       image: "/images/frame1.png",
-      link: "/products",
+      link: "/framed-photos",
     },
     {
       title: "صور مطبوعة عادية",
