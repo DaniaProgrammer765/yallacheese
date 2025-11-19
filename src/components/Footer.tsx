@@ -4,7 +4,9 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className={`w-full text-gray-700 pt-12 pb-4 border-t border-gray-100 bg-[#FBF9F9]`}>
+    <footer
+      className={`w-full text-gray-700 pt-12 pb-4 border-t border-gray-100 bg-[#FBF9F9]`}
+    >
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10 text-right">
         {/* العمود 1:  الشعار و النص */}
         <div className="flex flex-col">
@@ -21,7 +23,11 @@ export default function Footer() {
             <br /> عمان - الأردن
           </p>
           <div className="flex  gap-3 mt-4">
-            <Link href="#">
+            <Link
+              href="https://www.facebook.com/share/16mi2wppZ9/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src="/icons/facebook.svg"
                 alt="Facebook"
@@ -29,7 +35,11 @@ export default function Footer() {
                 height={30}
               />
             </Link>
-            <Link href="#">
+            <Link
+              href="https://www.instagram.com/yallacheese"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src="/icons/instagram.svg"
                 alt="Instagram"
@@ -93,7 +103,7 @@ export default function Footer() {
         </div>
 
         {/* العمود 4:  العنوان  */}
-        
+
         <div className="text-right">
           <h3 className="relative font-semibold text-primary mb-5 inline-block">
             العنوان

@@ -97,6 +97,9 @@ html[dir="ltr"] body {
 .text-secondary{
 color: #3B4057;
 }
+.text-basic-color{
+  color: #1B213E;
+}
 .headers{
   color: #170F49;
 }

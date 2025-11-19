@@ -2,12 +2,14 @@
 import { useState, useEffect } from "react";
 import Menu from "./Menu";
 import Login from "./Login";
+import Cart from "./Cart"; // السلة
 import { usePathname, useRouter } from "next/navigation";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [basketOpen, setBasketOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -40,7 +42,7 @@ export default function Header() {
       >
         {/* ✅ أيقونة المنتج (يمين) */}
         <button
-          onClick={() => router.push("/products")}
+          onClick={() => setBasketOpen(true)} // 🔥 افتح السلة
           className={`transition cursor-pointer ${
             isMain && !scrolled ? "text-white" : "text-gray-800"
           }`}
@@ -94,6 +96,7 @@ export default function Header() {
         onClose={() => setMenuOpen(false)}
         onLoginOpen={() => setLoginOpen(true)}
       />
+      <Cart isOpen={basketOpen} onClose={() => setBasketOpen(false)} />
       {loginOpen && <Login onClose={() => setLoginOpen(false)} />}
     </>
   );
