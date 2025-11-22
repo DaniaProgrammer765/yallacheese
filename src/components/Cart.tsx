@@ -1,7 +1,9 @@
 "use client";
-import Image from "next/image";
+import { useState } from "react";
+import AddressModal from "./AddressModal";
 
 export default function Cart({ isOpen, onClose }: any) {
+  const [addressOpen, setAddressOpen] = useState(false);
   return (
     <>
       {/* خلفية سوداء */}
@@ -21,8 +23,9 @@ export default function Cart({ isOpen, onClose }: any) {
         </h2>
         {/* زر: أضف العنوان */}
         <button
-          className="w-full flex justify-between items-center border px-4 py-3 rounded-lg mb-3"
+          className="w-full flex justify-between items-center border px-4 py-3 rounded-lg mb-3 cursor-pointer"
           style={{ borderColor: "rgba(0,0,0,0.1)" }}
+          onClick={() => setAddressOpen(true)}
         >
           {/* 🔹 السهم + النص بدون أي مسافة */}
           <div className="flex items-center gap-2">
@@ -38,7 +41,7 @@ export default function Cart({ isOpen, onClose }: any) {
 
         {/* زر: طريقة الدفع */}
         <button
-          className="w-full flex justify-between items-center border px-4 py-3 rounded-lg mb-3"
+          className="w-full flex justify-between items-center border px-4 py-3 rounded-lg mb-3 cursor-pointer"
           style={{ borderColor: "rgba(0,0,0,0.1)" }}
         >
           <div className="flex gap-2 items-center gap-0">
@@ -130,6 +133,7 @@ export default function Cart({ isOpen, onClose }: any) {
           <img src="/icons/ryal.svg" />
         </button>
       </div>
+     <AddressModal isAddressOpen={addressOpen} onCloseAddress={() => setAddressOpen(false)} />
     </>
   );
 }

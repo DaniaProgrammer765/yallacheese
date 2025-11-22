@@ -142,15 +142,14 @@ color: #3B4057;
   overflow: hidden;
 }
 .login-left-side{
-    background-color: #FF2B77;
+  background-color: #FF2B77;
   background-image: url('/svg/union.svg');
   background-size: cover;
-    background-position: center;
+  background-position: center;
   border-radius: 10px;
   margin: 10px;
 }
 .input-style{
-border: 1px solid #F4F4F6 !important;
 background-color: #F4F4F6 !important;
 color: #73737C !important;
 border-radius: 5px !important;
